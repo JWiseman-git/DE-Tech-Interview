@@ -5,4 +5,6 @@ Include explanation for first time setup if needed - SQLite download etc
 
 Include source code into repository to create these zones 
 
+pip install lxml -- make a requirements folder! 
+
 [Working notes: https://docs.google.com/document/d/1DX4duf8doHBHvmG7oCzPHnItim-ln-RFE-EnaNXDUHw/edit?tab=t.0]
