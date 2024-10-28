@@ -1,0 +1,7 @@
+CREATE TABLE DIRECT_ASSOCIATION (
+    DW_DIRECT_ASSOCIATION_ID        INTEGER PRIMARY KEY AUTOINCREMENT,
+    DISEASE_ID                      VARCHAR(500) NOT NULL,
+    TARGET_ID                       VARCHAR(500) NOT NULL,
+    SCORE                           INTEGER,
+    EVIDENCE_COUNT                  INTEGER
+);
