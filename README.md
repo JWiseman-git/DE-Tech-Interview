@@ -77,7 +77,3 @@ ATTACH DATABASE "C:\Users\jorda\Documents\GitHub\DE-Tech-Interview\Foundation.db
 For questions, please contact Jordan Wiseman in DE or post a question in the following channels: <Something@Teams>
 
 [Working notes: https://docs.google.com/document/d/1DX4duf8doHBHvmG7oCzPHnItim-ln-RFE-EnaNXDUHw/edit?tab=t.0]
-
-
-
-[Working notes: https://docs.google.com/document/d/1DX4duf8doHBHvmG7oCzPHnItim-ln-RFE-EnaNXDUHw/edit?tab=t.0]
