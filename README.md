@@ -8,6 +8,8 @@ Include source code into repository to create these zones
 ## Raw sources can be found here: 
 Open Targets: https://platform.opentargets.org/downloads
 
+>> FTP server: https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/21.06/output/etl/parquet/
+
 String: https://string-db.org/cgi/download?sessionId=baXq4yzPPB1H&species_text=Homo+sapiens 
 
 UniProt: https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete
