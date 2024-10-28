@@ -48,7 +48,8 @@ pip install -r requirements.txt
 ## Foundation Tables 
 
 - Within foundation table folder open the Table Creation file to view SQL scripts for creating tables for cleansed and normalised data.
-- The Foundation database can be created pythonically using the script provided in the setup folder. 
+- The Foundation database can be created pythonically using the script provided in the setup folder.
+- Foreign keys to other tables are added using the IDs prefixed with DW_.
 **- Note: When working with running these code snippets with SQLite, it is important to use the following: **
 
 ### Enabling Foreign Keys 
@@ -67,8 +68,9 @@ ATTACH DATABASE "C:\Users\jorda\Documents\GitHub\DE-Tech-Interview\staging.db" A
 ATTACH DATABASE "C:\Users\jorda\Documents\GitHub\DE-Tech-Interview\Foundation.db" AS Foundation;
 ```
 
-## Tests
-- The same python file within Foundation Tables>Setup can be used to create the Semantic database.
+## Semantic Layer
+- The same python file within Foundation Tables > Setup can be used to create the Semantic database.
+- The view UNIPROT_ASSOCIATIONS contains the final display view of the UNIPROT data.
 
 ## Tests
 
