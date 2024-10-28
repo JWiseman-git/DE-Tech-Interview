@@ -68,6 +68,9 @@ ATTACH DATABASE "C:\Users\jorda\Documents\GitHub\DE-Tech-Interview\Foundation.db
 ```
 
 ## Tests
+- The same python file within Foundation Tables>Setup can be used to create the Semantic database.
+
+## Tests
 
 - Unit tests for the staging scripts can be found within Tests in the ETL folder.
 - Each unit test points to a specific element of the load process and should be called during: development stages, during CICD usage or before merging changes into the main branch.
