@@ -3,7 +3,10 @@ ELT pipeline to combine open targets to UniProt Data.
 
 Include explanation for first time setup if needed - SQLite download etc 
 
-## Requirements for first time startup: 
+## Table of Contents
+- [Installation](#Setup:)
+
+## Setup 
 
 
 SQLite extensiopn 
