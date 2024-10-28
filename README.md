@@ -1,9 +1,12 @@
-# DE-Tech-Interview
+# Overivew
 ELT pipeline to combine open targets to UniProt Data.
 
 Include explanation for first time setup if needed - SQLite download etc 
 
-Include source code into repository to create these zones 
+## Requirements for first time startup: 
+
+
+SQLite extensiopn 
 
 ## Raw sources can be found here: 
 Open Targets: https://platform.opentargets.org/downloads
@@ -16,3 +19,9 @@ UniProt: https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledge
 
 
 [Working notes: https://docs.google.com/document/d/1DX4duf8doHBHvmG7oCzPHnItim-ln-RFE-EnaNXDUHw/edit?tab=t.0]
+
+## Datamodel
+
+PRAGMA foreign_keys = ON;
+
+ATTACH DATABASE "C:\Users\jorda\Documents\GitHub\DE-Tech-Interview\staging.db" AS STAGING;
