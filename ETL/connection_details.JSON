@@ -4,7 +4,8 @@
         "database": "Staging",
         "tablename": "uniprot"},
     "String":{
-        "filepath": "string_data/9606.protein.links.v12.0.txt.gz",
+        "filepath": "Staging/string_data/9606.protein.links.v12.0.txt.gz",
+        "desired fields": "['protein1', 'protein2', 'combined_score']",
         "database": "Staging",
         "tablename": "string"},
     "Targets":{

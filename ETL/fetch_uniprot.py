@@ -4,21 +4,41 @@ from io import BytesIO
 from lxml import etree
 import pandas as pd
 
-# Create a namespace variable here 
 
-def download_file(url):
-    """Download a file from the specified URL."""
-    response = requests.get(url, stream=True)
-    response.raise_for_status()  # Check if the request was successful
+def download_data_from_url(url: str):
+    """
+    Download a file from the specified URL.
+    
+    Parameters:
+    url (str): The URL to download the data from.
+
+    """
+    try:
+        response = requests.get(url, stream=True)
+        response.raise_for_status()  
+    except requests.exceptions.RequestException as e:
+        print(f"Error downloading data from {url}: {e}")
+        raise  # Re-raise the exception for further handling if needed
+    
     return response.content
 
+
 def parse_xml(xml_content):
-    """Parse the XML content using lxml and yield selected fields for each entry."""
+
+    """
+    Parse the XML content using lxml to extract desired fields from each entry. 
+
+    Parameters:
+    xml_content: Unzipped raw XML content
+
+    """
+    
     # Use lxml's iterparse to parse large XML files
+
     context = etree.iterparse(BytesIO(xml_content), events=("end",), tag="{http://uniprot.org/uniprot}entry")
     
     for event, entry in context:
-        # Extract required fields
+
         data = {}
         
         # Primary Accession
@@ -62,30 +82,43 @@ def parse_xml(xml_content):
 
         # Clear element to save memory
         entry.clear()
+
         while entry.getprevious() is not None:
             del entry.getparent()[0]
 
+
 def download_uniprot_data(url : str) -> pd.DataFrame:
+
+    """
+
+    Call functions to download and extract data into a pandas dataframe. 
+
+    """
     
-    print("Downloading data...")
-    gzipped_data = download_file(url)
+    print(f"Downloading data from url: {url}")
+
+    gzipped_data = download_data_from_url(url)
     
-    print("Decompressing data...")
-    with gzip.open(BytesIO(gzipped_data), 'rb') as f:
-        xml_content = f.read()
+    # Compressed XML gzip is then decompressed
+
+    with gzip.open(BytesIO(gzipped_data), 'rb') as opened_file:
+        xml_content = opened_file.read()
  
-    print("Parsing XML data...")
+    print("Begining parse of XML data")
+
     data_list = []
-    entry_limit = 1000  # Limit to the first 1000 entries for testing
+
+    entry_limit = 1000  # NOTE TO REVIEWER - I Have limited this data to the first 1000 rows due to compute issues 
     count = 0
     
     for entry_data in parse_xml(xml_content):
         data_list.append(entry_data)
         count += 1
         if count >= entry_limit:
-            break  # Stop after the first 5 entries
+            break 
     
-    # Convert the data to a pandas DataFrame and display it in tabular format
+    print("Concluded XML data parse")
+
     df = pd.DataFrame(data_list)
     
     return df
