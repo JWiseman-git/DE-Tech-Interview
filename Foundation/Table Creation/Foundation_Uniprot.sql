@@ -1,24 +1,12 @@
 CREATE TABLE UNIPROT (
-    DW_UNIPROT_ID           NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    DW_DISEASES_ID          FOREIGN KEY,
-    DW_PROTEINS_ID          FOREIGN KEY,
-    DW_TARGETS_ID           FOREIGN KEY,
-    PRIMARY_ACCESSION       TEXT,
+    DW_UNIPROT_ID               INTEGER PRIMARY KEY AUTOINCREMENT,
+    DW_DISEASES_ID              FOREIGN KEY,
+    DW_PROTEINS_ID              FOREIGN KEY,
+    DW_TARGETS_ID               FOREIGN KEY,
+    PRIMARY_ACCESSION           VARCHAR(500),
+    RECOMMENDED_PROTEIN_NAME    VARCHAR(500),
+    SPECIES_COMMON_NAME         VARCHAR(500),
+    SEQUENCE_LENGTH             INTEGER,
+    PRIMARY_GENE_NAME           VARCHAR(500)   
+
 );
-
-
--- select 
---     "Primary Accession",
---     "Recommended Protein Name",
---     u."OpenTargets dbReference",
---     t."id"
--- from uniprot u 
--- inner join targets t on u."OpenTargets dbReference" = t."id"
-
-select 
-    "Primary Accession",
-    "Recommended Protein Name",
-    u."OpenTargets dbReference",
-    t."id"
-from uniprot u 
-inner join  t on u."OpenTargets dbReference" = t."id"
