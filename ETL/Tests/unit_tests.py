@@ -1,34 +1,41 @@
 import unittest
 import pandas as pd
-import sqlite3
-from your_module import load_data_database_table  # Adjust the import according to your file structure
+import json
+from ETL.fetch_open_targets import download_and_filter_parquet_files, download_parquet_files
 
-class TestLoadDataDatabaseTable(unittest.TestCase):
 
-    def setUp(self):
-        """Create an in-memory SQLite database and a sample DataFrame for testing."""
-        self.database = ':memory:'  # Use an in-memory database
-        self.tablename = 'test_table'
-        self.data = pd.DataFrame({
-            'column1': [1, 2, 3],
-            'column2': ['a', 'b', 'c']
-        })
+class TestDataFrameOutput(unittest.TestCase):
 
-    def tearDown(self):
-        """No need to explicitly close the in-memory database."""
-        pass
+    def __init__(self, *args, **kwargs):
 
-    def test_load_data(self):
-        """Test if data is loaded correctly into the SQLite database."""
-        load_data_database_table(self.database, self.tablename, self.data)
+        super(TestDataFrameOutput, self).__init__(*args, **kwargs)
 
-        # Verify if data is in the database
-        conn = sqlite3.connect(self.database)
-        result = pd.read_sql_query(f"SELECT * FROM {self.tablename}", conn)
-        conn.close()
+        # Load JSON file from connection_details
+        # Example case provided below for Targets but variables can be updated as needed 
 
-        # Check if the loaded data matches the original DataFrame
-        pd.testing.assert_frame_equal(result, self.data)
+        with open("ETL/connection_details.json", "r") as f:  
+            params = json.load(f)
+        self.server = params['Targets']['server']
+        self.url = params['Targets']['url']
+        self.expected_fields = set(params['Targets']['desired fields'])
+
+
+    def test_dataframe_not_empty(self):
+
+        # Confirm whether a loaded dataframe is empty
+
+        result_df = download_and_filter_parquet_files(self.server, self.url)
+
+        self.assertFalse(result_df.empty, "The DataFrame is empty")
+    
+
+    def test_return_dataframe_fields(self):
+
+        # Check if expected fields are in the DataFrame columns
+
+        result_df = download_and_filter_parquet_files(self.server, self.url, self.expected_fields)
+
+        self.assertTrue(self.expected_fields.issubset(result_df.columns), "Missing expected fields in DataFrame")
 
 if __name__ == '__main__':
     unittest.main()
