@@ -47,7 +47,7 @@ pip install -r requirements.txt
 
 ## Foundation Tables 
 
-- Within foundation table folder open the Table Creation file to view SQL scripts for creating tables for cleansed and normalised data.
+- Within the foundation table folder open the Table Creation file to view SQL scripts for creating tables for cleansed and normalised data.
 - The Foundation database can be created pythonically using the script provided in the setup folder.
 - Foreign keys to other tables are added using the IDs prefixed with DW_.
 **- Note: When working with running these code snippets with SQLite, it is important to use the following: **
@@ -75,7 +75,12 @@ ATTACH DATABASE "C:\Users\jorda\Documents\GitHub\DE-Tech-Interview\Foundation.db
 ## Tests
 
 - Unit tests for the staging scripts can be found within Tests in the ETL folder.
-- Each unit test points to a specific element of the load process and should be called during: development stages, during CICD usage or before merging changes into the main branch.
+- Each unit test should be called during: development stages, during CICD usage or before merging changes into the main branch.
+- Tests variables can be updated to point at specific load processes
+- Tests run from the command line using:
+```
+python -m unittest tests/unit_tests.py
+```
 
 ## Contact 
 
